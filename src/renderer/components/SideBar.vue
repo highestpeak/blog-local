@@ -32,6 +32,7 @@
 
         <div class="footer-menu" style="margin-top:20px">
           <PageBlockMenuItem class="main-menu-item" link="/todos" :icons="['fas', 'list-ul']" name="Todo List"></PageBlockMenuItem>
+          <PageBlockMenuItem class="main-menu-item" link="/calendar" :icons="['fas', 'calendar-alt']" name="Calendar"></PageBlockMenuItem>
         </div>
 
         <!-- 这个区域不要删！可能之后会用到，因为我现在不确定，所以没有删除这个代码 -->
