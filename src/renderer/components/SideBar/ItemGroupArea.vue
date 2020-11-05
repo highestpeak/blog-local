@@ -65,7 +65,9 @@ export default {
   props: {
     icons: {
       type: Array,
-      default: ['fas', 'angle-double-left']
+      default: function () {
+        return ['fas', 'angle-double-left']
+      }
     },
     name: {
       type: String,

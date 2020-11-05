@@ -12,7 +12,9 @@ export default {
   props: {
     icon: {
       type: Array,
-      default: ['fas', 'home']
+      default: function () {
+        return ['fas', 'home']
+      }
     },
     name: {
       type: String,

@@ -40,13 +40,13 @@ export default {
 }
 #app{
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: relative;
   display: flex;
   flex: 1 1 0%;
+  overflow: hidden;
   background: white;
   cursor: text;
-
   color: rgb(55, 53, 47);
   fill: currentcolor;
   line-height: 1.5;
@@ -62,6 +62,7 @@ export default {
   background: rgb(247, 246, 243);
   transition: box-shadow 300ms ease-in 0s;
   width: 237px;
+  height: 100vh;
 }
 .bloglocal-frame{
   flex-grow: 1;
@@ -73,6 +74,7 @@ export default {
   height: 100vh;
   max-height: 100%;
   width: 527px;
+  overflow-y: scroll;
 }
 .bloglocal-bottom-right-float-button{
   user-select: none;
