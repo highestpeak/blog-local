@@ -9,12 +9,12 @@ export default new Router({
       path: '/',
       name: 'home',
       component: require('@/views/home').default
+    },
+    {
+      path: '/workspace',
+      name: 'workspace',
+      component: require('@/views/workspace').default
     }
-    // {
-    //   path: '/workspace',
-    //   name: 'workspace',
-    //   component: require('@/views/workspace').default
-    // },
     // {
     //   path: '/gist',
     //   name: 'gist',
