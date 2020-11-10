@@ -1,26 +1,55 @@
 <template>
   <div>
-      <!-- 列表 sql 语句 -->
-      
+      <h4 style="margin: 5px 5px;">列表数据源</h4>
 
       <!-- 筛选出一个列表 -->
       <!-- Button toolbar -->
-      <b-button-group>
-        <b-button>
-          <font-awesome-icon :icon="['fas','home']" style="color: #afaeac" />全部</b-button>
-        <b-button>完成</b-button>
-        <b-button>未完成</b-button>
-        <b-button>待写</b-button>
-        <b-button>当前修改</b-button>
-        <b-button>其他</b-button>
-        <b-button>添加</b-button>
-      </b-button-group>
+      <b-button-toolbar style="margin: 5px 5px;">
+        <b-button-group>
+          <b-button>
+            <font-awesome-icon :icon="['fas','home']" style="color: #afaeac" />
+            全部
+          </b-button>
+          <b-button>完成</b-button>
+          <b-button>未完成</b-button>
+          <b-button>待写</b-button>
+          <b-button>当前修改</b-button>
+          <b-button>当前选择</b-button>
+          <b-dropdown text="其他">
+            <b-dropdown-item>Item 1</b-dropdown-item>
+            <b-dropdown-item>Item 2</b-dropdown-item>
+            <b-dropdown-item>Item 3</b-dropdown-item>
+          </b-dropdown>
+          <b-button>添加</b-button>
+        </b-button-group>
+
+        <b-input-group size="sm" style="margin-left:10px;">
+          <b-input-group-prepend is-text>
+            <font-awesome-icon :icon="['fas','home']" style="color: #afaeac" />
+          </b-input-group-prepend>
+
+          <!-- 列表 sql 语句 -->
+          <!-- todo: 编写时应当可以提示字段 -->
+          <!-- todo: 应当可以执行sql排序 -->
+          <b-form-input v-model="text" placeholder="Enter your search sql" style="height: auto;"></b-form-input>
+
+          <b-input-group-append>
+            <b-button variant="info">GO</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-button-toolbar>
+      
+      <!-- todo: 操作例如 多选、全选-->
+      <!-- 多选/全选之后进行批量修改，批量修改包括：
+          批量重命名-批量删除-批量标准检查-标签抽取等 -->
+      <!-- 多选之后可以分析文章关系、文章与资源的关系，显示网络拓扑 -->
+      <!-- 多选之后可以进行渲染，渲染成html和pdf等，放到指定的位置，渲染成pdf可以成书 -->
+      <h4 style="margin: 5px 5px;">列表操作</h4>
 
       <!-- 对列表进行排序处理 -->
+      <!-- todo: 当对某一项进行修改的时候，可以暂时记住它和对它的修改，并高亮它，只有当点击工具栏的提交才会提交上去修改 -->
+      <!-- todo: 所有的带修改内容都在表格中以高亮的形式体现出来 -->
       <div style="margin: 5px 5px;">
-        <div style="list-sort-by-button">
-          列表排序依据
-        </div>
         <b-table striped hover responsive 
           sticky-header="510px"
           :items="items" 
@@ -28,39 +57,68 @@
           headVariant="dark"
           :bordered="true"
           table-variant=""
+          selectable
+          select-mode="muti"
+          @row-selected="onRowSelected"
           :fields="fields">
+
+          <!-- Example scoped slot for select state illustrative purposes -->
+        <template #cell(selected)="{ rowSelected }">
+          <template v-if="rowSelected">
+            <span aria-hidden="true">&check;</span>
+            <span class="sr-only">Selected</span>
+          </template>
+          <template v-else>
+            <span aria-hidden="true">&nbsp;</span>
+            <span class="sr-only">Not selected</span>
+          </template>
+        </template>
+
           <!-- index  -->
           <template #cell(index)="data">
             {{ data.index + 1 }}
           </template>
 
           <!-- name -->
+          <!-- todo: 点击显示文章详情，组件为 bootstrapvue 的 sidebar 
+                显示的内容包括但不限于：历史记录、文章之间（自己的相互之间的/引用外部的）的引用关系、 
+                文章和资源（图片、代码块 gist）的引用关系 -->
           <template #cell(name)="row">
-            <a href="#"> {{row.item.name}} </a>
+            <a href="#" class="text-dark" style="font-weight: 600;"> {{row.item.name}} </a>
           </template>
 
           <!-- categroy -->
+          <!-- todo: 同tags，但是组件为 bootstrapvue 的 sidebar，并额外新增：下属tag的网状图 -->
           <template #cell(categroy)="row">
             <a href="#"> {{row.item.categroy}} </a>
           </template>
 
           <!-- tags -->
+          <!-- todo: 点击则显示相应的 tag 的详细内容（浮动）组件为 Popover -->
           <template #cell(tags)="row">
             <!-- {{row.item.tags}} -->
             <TagCloud :tags=tagCloudData(row.item.tags) />
           </template>
 
           <!-- storage_location -->
+          <!-- todo: 点击打开对应的资源管理器的位置 -->
           <template #cell(storage_location)="row">
             <a href="#"> {{row.item.storage_location}} </a>
           </template>
+
+          <!-- Optional default data cell scoped slot -->
+          <template #cell()="data">
+            <i>{{ data.value }}</i>
+          </template>
+          <!-- todo: todos的悬浮会显示todo事项，组件为 popover -->
         </b-table>
       </div>
 
-      <p>
-        点击对应项：打开对应的目录，查看历史记录，查看文章之间（自己的相互之间的/引用外部的）的引用关系，
-        查看文章和资源（图片、代码块 gist）的引用关系
-      </p>
+      <!-- todo：所有能显示这些的项都要显示，
+          点击对应项：打开对应的目录，查看历史记录，查看文章之间（自己的相互之间的/引用外部的）的引用关系，
+          查看文章和资源（图片、代码块 gist）的引用关系 
+          能显示这些的项包括了：category、tags、location、keywords-->
+
   </div>
 </template>
 
@@ -75,7 +133,7 @@ export default {
   data: function() {
     return {
       fields: [
-        'index',
+        'selected', 'index',
         {
           key: 'name',
           sortable: true
@@ -177,7 +235,9 @@ export default {
         { name: '计算机网络-应用层-HTTP', categroy: '计算机网络', tags: ['java', 'list'], create_time: '2019/09/06  21:00', update_time: '2020/09/06  21:53', size: '23,130', words: '23,130', storage_location: '博文临时库', todos: 2, key_words: ['java', 'list'], standard_check: true },
         { name: '计算机网络-应用层', categroy: '计算机网络', tags: ['java', 'list'], create_time: '2019/09/14  22:00', update_time: '2020/09/14  22:15', size: '4,927', words: '4,927', storage_location: '博文临时库', todos: 4, key_words: ['java', 'list'], standard_check: true },
         { name: '计算机网络综述', categroy: '计算机网络', tags: ['java', 'list'], create_time: '2019/09/14  21:00', update_time: '2020/09/14  21:16', size: '3,588', words: '3,588', storage_location: '博文临时库', todos: 3, key_words: ['java', 'list'], standard_check: true }
-      ]
+      ],
+      text: '',
+      selected: []
     }
   },
   computed: {
@@ -193,6 +253,9 @@ export default {
           link: '#' + tagName
         }
       })
+    },
+    onRowSelected(items) {
+      this.selected = items
     }
   }
 }
@@ -231,4 +294,9 @@ export default {
 /* .btn-group > button{
   background-color: #343a40;
 } */
+.table.b-table > tbody > .table-active, 
+.table.b-table > tbody > .table-active > th, 
+.table.b-table > tbody > .table-active > td {
+    background-color: #fadcaa !important;
+}
 </style>
