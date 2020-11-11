@@ -26,7 +26,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 */
 import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faHome, faSearch, faPlus, faCheck, faPlay, faPause, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { faAngleDoubleLeft, faPlus, faTrash, faListUl, faSearch, faCogs, faBook, faTag, faImage, faCode, faFolder, faHome, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faAngleDoubleLeft, faPlus, faTrash, faListUl, faSearch, faCogs, faBook,
+  faTag, faImage, faCode, faFolder, faHome, faCalendarAlt, faList, faInfo,
+  faStream, faTable
+} from '@fortawesome/free-solid-svg-icons'
 // import { faMarkdown, faAppStore } from '@fortawesome/free-brands-svg-icons'
 import { faFile } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
@@ -36,7 +40,11 @@ import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome
 // free-brands-svg-icons
 // library.add(faMarkdown, faAppStore)
 // free-regular-svg-icons
-library.add(faAngleDoubleLeft, faPlus, faTrash, faListUl, faSearch, faCogs, faBook, faTag, faImage, faCode, faFolder, faHome, faCalendarAlt)
+library.add(
+  faAngleDoubleLeft, faPlus, faTrash, faListUl, faSearch, faCogs, faBook,
+  faTag, faImage, faCode, faFolder, faHome, faCalendarAlt, faList, faInfo,
+  faStream, faTable
+)
 library.add(faFile)
 // vue-fontawesome
 Vue.component('font-awesome-icon', FontAwesomeIcon)
