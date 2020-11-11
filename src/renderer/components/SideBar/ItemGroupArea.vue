@@ -35,29 +35,32 @@
       </div>
     </div><!-- 头部 -->
 
+    <slot name="footer"></slot>
     <!-- Items -->
     <!-- 表头项 -->
-    <div v-if="pageBlockItem===false">
+    <!-- <div v-if="pageBlockItem===false">
       <MenuItem :icons="['fas', 'search']" name="Quick Find"></MenuItem>
       <MenuItem :icons="['fas', 'cogs']" name="Settings"></MenuItem>
-    </div><!-- 表头项 -->
+    </div> -->
+    <!-- 表头项 -->
 
     <!-- 页面项 -->
     <!-- 这个区域不要删！可能之后会用到，因为我现在不确定，所以没有删除这个代码 -->
-    <div v-else>
+    <!-- <div v-else> -->
       <!-- <PageBlockMenuItem></PageBlockMenuItem> -->
 
       <!-- add new -->
-      <PageBlockMenuItem :icons="['fas', 'plus']" name="Add a Tag" ></PageBlockMenuItem>
+      <!-- <PageBlockMenuItem :icons="['fas', 'plus']" name="Add a Tag" ></PageBlockMenuItem> -->
       <!-- trash -->
-      <PageBlockMenuItem :icons="['fas', 'trash']" name="Tag Trash" ></PageBlockMenuItem>
-    </div><!-- 页面项 -->
+      <!-- <PageBlockMenuItem :icons="['fas', 'trash']" name="Tag Trash" ></PageBlockMenuItem> -->
+    <!-- </div> -->
+    <!-- 页面项 -->
 
   </div>
 </template>
 
 <script>
-import MenuItem from '@/components/SideBar/MenuItem.vue'
+// import MenuItem from '@/components/SideBar/MenuItem.vue'
 import PageBlockMenuItem from '@/components/SideBar/PageBlockMenuItem.vue'
 
 export default {
@@ -72,14 +75,10 @@ export default {
     name: {
       type: String,
       default: "Who's Area"
-    },
-    pageBlockItem: {
-      type: Boolean,
-      default: true
     }
   },
   components: {
-    MenuItem,
+    // MenuItem,
     PageBlockMenuItem
   }
 }

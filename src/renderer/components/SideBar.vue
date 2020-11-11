@@ -10,14 +10,27 @@
         
         <!-- 侧边栏头 -->
         <!-- 侧边栏功能区 -->
-        <ItemGroupArea name="WHO's Notion" :pageBlockItem=false>
+        <ItemGroupArea name="WHO's Notion">
           <!-- area-icon -->
-            <div slot="area-icon" class="blog-local-record-icon-notranslate" 
-              role="button" aria-disabled="true" tabindex="-1">
-              <div class="blog-local-record-icon-final-wrapper">
-                <div style="line-height: 1; font-size: 12.21px; height: 12.21px;">W</div>
-              </div>
-            </div><!-- area-icon -->
+          <div slot="area-icon" class="blog-local-record-icon-notranslate" 
+            role="button" aria-disabled="true" tabindex="-1">
+            <div class="blog-local-record-icon-final-wrapper">
+              <div style="line-height: 1; font-size: 12.21px; height: 12.21px;">W</div>
+            </div>
+          </div><!-- area-icon -->
+          
+          <template v-slot:footer>
+            <MenuItem v-b-modal.quick-find :icons="['fas', 'search']" name="Quick Find"></MenuItem>
+            <MenuItem v-b-modal.settings :icons="['fas', 'cogs']" name="Settings"></MenuItem>
+            <b-modal id="quick-find" size="lg" hide-header=true hide-footer=true centered>
+              <QuickFind/>
+            </b-modal>
+            <b-modal id="settings" size="xl" title="Settings" no-close-on-backdrop=true>
+              Settings
+              <!-- todo: 使用 sidebar -->
+            </b-modal>
+          </template>
+
         </ItemGroupArea>
 
         <!-- 菜单项 -->
@@ -62,6 +75,8 @@
 </template>
 
 <script>
+import QuickFind from '@/components/QuickFind.vue'
+import MenuItem from '@/components/SideBar/MenuItem.vue'
 import ItemGroupArea from '@/components/SideBar/ItemGroupArea.vue'
 import PageBlockMenuItem from '@/components/SideBar/PageBlockMenuItem.vue'
 
@@ -69,7 +84,9 @@ export default {
   name: 'SideBar',
   components: {
     ItemGroupArea,
-    PageBlockMenuItem
+    PageBlockMenuItem,
+    MenuItem,
+    QuickFind
   },
   data () {
     return {
