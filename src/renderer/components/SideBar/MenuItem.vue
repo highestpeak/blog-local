@@ -3,9 +3,14 @@
     <div class="menu-item-wrapper">
       <div class="menu-item-icon">
         <!-- <font-awesome-icon :icon="['fas', 'angle-double-left']" size="1x" style="color: #AFAEAC;"/> -->
-        <font-awesome-icon :icon="icons" size="1x" style="color: #AFAEAC;"/>
+        <font-awesome-icon :icon="icons" size="1x" style="color: #37352fcc;"/>
       </div>
-      <div class="menu-item-name">{{name}}</div>
+      <div class="menu-item-name"  
+        v-bind:style="{ 
+          'font-weight': clicked?'600':'initial'
+        }">
+        {{name}}
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +26,10 @@ export default {
     name: {
       type: String,
       default: 'icon here'
+    },
+    clicked: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -33,7 +42,7 @@ export default {
   cursor: pointer;
 }
 .menu-item:hover{
-  background-color: #E8E7E4;
+  background-color: #E8E7E4 !important;
 }
 .menu-item-wrapper{
     display: flex;
@@ -61,5 +70,6 @@ export default {
     min-width: 0px;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #37352f;
 }
 </style>

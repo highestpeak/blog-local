@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import SideBar from '@/components/SideBar.vue'
+import SideBar from '@/components/Sidebar.vue'
 export default {
   name: 'blog-local',
   components: {
@@ -61,7 +61,6 @@ export default {
   z-index: 99;
   background: rgb(247, 246, 243);
   transition: box-shadow 300ms ease-in 0s;
-  width: 237px;
   height: 100vh;
 }
 .bloglocal-frame{
