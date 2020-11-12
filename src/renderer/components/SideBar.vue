@@ -22,12 +22,15 @@
           <template v-slot:footer>
             <MenuItem v-b-modal.quick-find :icons="['fas', 'search']" name="Quick Find"></MenuItem>
             <MenuItem v-b-modal.settings :icons="['fas', 'cogs']" name="Settings"></MenuItem>
-            <b-modal id="quick-find" size="lg" hide-header=true hide-footer=true centered>
+            
+            <!-- quick find -->
+            <b-modal id="quick-find" size="lg" hide-header hide-footer centered>
               <QuickFind/>
             </b-modal>
-            <b-modal id="settings" size="xl" title="Settings" no-close-on-backdrop=true>
-              Settings
-              <!-- todo: 使用 sidebar -->
+
+            <!-- settings -->
+            <b-modal id="settings" size="xl" title="Settings" hide-header :no-close-on-backdrop=false>
+              <Settings/>
             </b-modal>
           </template>
 
@@ -76,6 +79,7 @@
 
 <script>
 import QuickFind from '@/components/QuickFind.vue'
+import Settings from '@/components/Settings.vue'
 import MenuItem from '@/components/SideBar/MenuItem.vue'
 import ItemGroupArea from '@/components/SideBar/ItemGroupArea.vue'
 import PageBlockMenuItem from '@/components/SideBar/PageBlockMenuItem.vue'
@@ -86,7 +90,8 @@ export default {
     ItemGroupArea,
     PageBlockMenuItem,
     MenuItem,
-    QuickFind
+    QuickFind,
+    Settings
   },
   data () {
     return {

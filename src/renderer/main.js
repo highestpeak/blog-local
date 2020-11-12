@@ -7,6 +7,8 @@ import store from './store'
 // https://github.com/julienr114/vue-calendar-heatmap
 import 'vue-calendar-heatmap/dist/vue-calendar-heatmap.css'
 import { CalendarHeatmap } from 'vue-calendar-heatmap/dist/vue-calendar-heatmap.common'
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -51,6 +53,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('font-awesome-layers', FontAwesomeLayers)
 
 Vue.component('vue-calendar-heatmap', CalendarHeatmap)
+Vue.component('vue-cal', VueCal)
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
