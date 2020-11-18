@@ -1,6 +1,7 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
+import './GitOperate'
 
 /**
  * Set `__static` path to static files in production
@@ -22,7 +23,13 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: 563,
     useContentSize: true,
-    width: 1000
+    width: 1000,
+    webPreferences: {
+      // problem to solved https://github.com/SimulatedGREG/electron-vue/issues/835
+      nodeIntegration: true,
+      // problem to solved https://github.com/sindresorhus/electron-store/issues/138
+      enableRemoteModule: true
+    }
   })
 
   mainWindow.loadURL(winURL)
