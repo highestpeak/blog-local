@@ -5,9 +5,10 @@
       <!-- 菜单项 -->
       <ItemGroupArea name='Markdown and gist'>
         <template v-slot:body>
-          <MenuItem class="main-menu-item" :icons="['fas', 'folder']" @click.native="changeSettingContent('Markdown render')" name="Markdown render"></MenuItem>
-          <MenuItem class="main-menu-item" :icons="['fas', 'folder']" @click.native="changeSettingContent('Code render')" name="Code render"></MenuItem>
-          <MenuItem class="main-menu-item" :icons="['fas', 'folder']" @click.native="changeSettingContent('Standard Check')" name="Standard Check"></MenuItem>
+          <MenuItem class="main-menu-item" :icons="['fas', 'folder']" @click.native="changeSettingContent('MarkdownRender')" name="Markdown render"></MenuItem>
+          <MenuItem class="main-menu-item" :icons="['fas', 'folder']" @click.native="changeSettingContent('CodeRender')" name="Code render"></MenuItem>
+          <MenuItem class="main-menu-item" :icons="['fas', 'folder']" @click.native="changeSettingContent('StandardCheck')" name="Standard Check"></MenuItem>
+          <MenuItem class="main-menu-item" :icons="['fas', 'folder']" @click.native="changeSettingContent('TagScan')" name="Tag scan"></MenuItem>
         </template>
       </ItemGroupArea>
 
@@ -33,8 +34,7 @@ export default {
   },
   methods: {
     changeSettingContent: function (name) {
-      console.log(name)
-      this.$emit('changeCurrSettingName', name)
+      this.$emit('change-curr-setting', name)
     }
   }
 }
