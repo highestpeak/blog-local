@@ -60,8 +60,8 @@ export default {
   name: 'DataSourceToolbar',
   data() {
     return {
-      basicDataSource: basicDataSource(),
-      otherDataSource: otherDataSource(),
+      basicDataSource: basicDataSource,
+      otherDataSource: otherDataSource,
       currDataSource: null,
       sqlPointHtml: sqlPointHtml,
       searchSql: ''

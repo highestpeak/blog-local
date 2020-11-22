@@ -1,6 +1,6 @@
 <template>
   <div class="workspace">
-    <DataSourceToolbar @change-data-source='changeDataSource' @search-by-sql='searchBySql'/>
+    <DataSourceToolbar @change-data-source='changeDataSource' @search-by-sql='searchBySqlEvent'/>
     
     <!-- 当前数据概述 -->
     <b-alert show variant="success">
@@ -44,6 +44,7 @@
 import OneLineListItem from '@/components/OneLineListItem.vue'
 import TagCloud from '@/components/Tags/TagCloud.vue'
 import DataSourceToolbar from '@/components/Workspace/DataSourceToolbar.vue'
+import { searchBySql, nameToDataFucDict } from '@/dataBroker/Workspace.js'
 export default {
   name: 'workspace',
   components: {
@@ -60,11 +61,17 @@ export default {
   },
   methods: {
     changeDataSource: function (dataSourceName) {
-      console.log(dataSourceName)
+      var fuc = nameToDataFucDict[dataSourceName]
+      fuc(function (data) {
+        // console.log(data)
+        // todo: 在表格中显示
+      })
     },
     // todo: 应当可以执行sql排序
-    searchBySql: function (sql) {
-      console.log(sql)
+    searchBySqlEvent: function (sql) {
+      console.log('searchBySqlEvent start')
+      searchBySql(sql)
+      console.log('searchBySqlEvent after')
     },
     onRowSelected(selectedItems) {
       this.tableRowSelected = selectedItems

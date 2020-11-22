@@ -1,7 +1,8 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
-import './GitOperate'
+import './Git/GitEvent'
+import './Database/index'
 
 /**
  * Set `__static` path to static files in production
