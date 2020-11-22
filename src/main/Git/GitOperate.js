@@ -72,7 +72,7 @@ function allFiles() {
 
   // lastCommitAppKnow 和 工作区 比较
   var sinceLastCommitAppKnow_changedFiles = gitDiff_nameStatus(targetDir, lastCommitAppKnow)
-  
+
   var files = {}
 
   // 标记状态被修改的文件
@@ -85,7 +85,7 @@ function allFiles() {
     if (line.length <= 1) {
       return
     }
-    
+
     // status 和 name
     var statusCode = line[0]
     var fileStatus = statusShortStrMap[statusCode]
