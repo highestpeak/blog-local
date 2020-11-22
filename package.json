@@ -61,7 +61,12 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
+    "glob": "^7.1.6",
     "isomorphic-git": "^1.8.0",
+    "marked": "^1.2.5",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.0",
+    "typeorm": "^0.2.29",
     "vue": "^2.6.12",
     "vue-cal": "^3.8.4",
     "vue-calendar-heatmap": "^0.8.4",
@@ -71,6 +76,7 @@
     "vuex-electron": "^1.0.0"
   },
   "devDependencies": {
+    "@types/node": "^14.14.9",
     "ajv": "^6.5.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
