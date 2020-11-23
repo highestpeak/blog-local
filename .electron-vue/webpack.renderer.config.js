@@ -11,6 +11,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
+// https://github.com/antonreshetov/massCode/blob/master/.electron-vue/webpack.renderer.config.js
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 /**
  * List of node_modules to include in webpack bundle
@@ -18,8 +20,10 @@ const { VueLoaderPlugin } = require('vue-loader')
  * Required for specific packages like Vue UI libraries
  * that provide pure *.vue files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
+ * to solve v-model in bootstrap-vue can not use
+ * https://github.com/bootstrap-vue/bootstrap-vue/issues/3040#issuecomment-499116726
  */
-let whiteListedModules = ['vue']
+let whiteListedModules = ['vue', 'bootstrap-vue']
 
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
@@ -147,7 +151,8 @@ let rendererConfig = {
         : false
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new MonacoWebpackPlugin()
   ],
   output: {
     filename: '[name].js',
