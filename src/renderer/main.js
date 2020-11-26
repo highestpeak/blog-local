@@ -31,7 +31,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faAngleDoubleLeft, faPlus, faTrash, faListUl, faSearch, faCogs, faBook,
   faTag, faImage, faCode, faFolder, faHome, faCalendarAlt, faList, faInfo,
-  faStream, faTable
+  faStream, faTable, faClipboard, faProjectDiagram, faFileCode, faDatabase,
+  faCodeBranch
 } from '@fortawesome/free-solid-svg-icons'
 // import { faMarkdown, faAppStore } from '@fortawesome/free-brands-svg-icons'
 import { faFile } from '@fortawesome/free-regular-svg-icons'
@@ -45,7 +46,8 @@ import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome
 library.add(
   faAngleDoubleLeft, faPlus, faTrash, faListUl, faSearch, faCogs, faBook,
   faTag, faImage, faCode, faFolder, faHome, faCalendarAlt, faList, faInfo,
-  faStream, faTable
+  faStream, faTable, faClipboard, faProjectDiagram, faFileCode, faDatabase,
+  faCodeBranch
 )
 library.add(faFile)
 // vue-fontawesome

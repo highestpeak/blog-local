@@ -6,10 +6,12 @@ import {
   gitDiff_nameStatus, execSyncGitCommond,
   allTrackedCommond, allUntrackedCommond
 } from './ExecGitCommond'
+import { getConfig } from '../Setting'
 
-var targetDir = 'E:/_data/testDir/BlogLocalTest'
+var targetDir = getConfig('targetDir')
+var excludeFiles = getConfig('excludeFiles')
 // 软件操作的最后一次 commit
-var lastCommitAppKnow = '9c6e005dd6c2ee'
+var lastCommitAppKnow = getConfig('lastCommitAppKnow')
 
 /**
  * 文件状态
@@ -115,6 +117,11 @@ function allFiles() {
   trackedFiles.forEach(line => { simpleStatusSet(line, unmodifyStatus) })
   // 标记新的文件
   untrackFiles.forEach(line => { simpleStatusSet(line, newAndUncommittedStatus) })
+
+  // 去除非文章的文件
+  excludeFiles.forEach(exclude => {
+    delete files[exclude]
+  })
 
   return files
 }

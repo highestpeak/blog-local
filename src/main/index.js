@@ -1,8 +1,12 @@
+/* eslint-disable import/first */
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
 import './Git/GitEvent'
+import './Markdown/MarkdownEvent'
 import './Database/index'
+import './Database/DatabaseEvent'
+import './Setting'
 
 /**
  * Set `__static` path to static files in production

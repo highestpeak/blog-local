@@ -11,6 +11,8 @@ import { allFiles } from './GitOperate'
  * 返回所有文件名，以及相对于软件知道的最后一次 commit 的变化
  * todo: 需要记录软件知道的 commit
  */
-ipcMain.on('all-files-msg', async (event, arg) => {
-  event.sender.send('all-files-reply', allFiles())
+ipcMain.on('all-files-msg', (event, arg) => {
+  // console.time('allFiles')
+  event.returnValue = allFiles()
+  // console.timeEnd('allFiles')
 })

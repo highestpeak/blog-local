@@ -35,11 +35,11 @@ export default new Router({
       name: 'tag',
       component: require('@/views/tag').default
     },
-    // {
-    //   path: '/calendar',
-    //   name: 'calendar',
-    //   component: require('@/views/calendar').default
-    // },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: require('@/views/calendar').default
+    },
     {
       path: '/todos',
       name: 'todos',
