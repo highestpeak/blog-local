@@ -34,11 +34,11 @@ export default {
   text-align: initial;
 }
 .tag-cloud{
-  text-align: center;
+  text-align: left;
 }
 .tag-cloud a {
   border: none;
-  margin: 0 4px;
+  margin: 2px 4px;
   background: #63a35c;
   display: inline-block;
   border-radius: 4px;
