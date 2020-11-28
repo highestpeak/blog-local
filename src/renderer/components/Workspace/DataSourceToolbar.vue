@@ -6,7 +6,8 @@
       <b-button 
         squared 
         v-for="(dataSource,index) in basicDataSource" :key="index"
-        @click="selectedDataSource(dataSource.name)">
+        @click="selectedDataSource(dataSource)"
+        :pressed.sync="dataSource.state">
           {{ dataSource.caption }}
       </b-button>
     </b-button-group><!-- 基本功能 -->
@@ -17,7 +18,7 @@
         <b-button 
           squared 
           v-if="dataSource.items==null" :key="index"
-          @click="selectedDataSource(dataSource.name)"> 
+          @click="selectedDataSource(dataSource)"> 
           {{ dataSource.caption }} 
         </b-button>
 
@@ -26,7 +27,7 @@
           :text="dataSource.name"> 
           <b-dropdown-item size="sm" 
             v-for="(item,itemIndex) in dataSource.items" :key="itemIndex"
-            @click="selectedDataSource(item.name)"> 
+            @click="selectedDataSource(item)"> 
             {{ item.caption }} 
           </b-dropdown-item>
         </b-dropdown>
@@ -68,20 +69,23 @@ export default {
     }
   },
   created() {
-    this.selectedDataSource('basic', this.basicDataSource[0])
+    this.selectedDataSource(this.basicDataSource[0])
   },
   methods: {
     inputSql: function (sql) {
       this.currDataSource = 'sql:' + sql
       this.searchSql = sql
     },
-    selectedDataSource: function (dataSourceName) {
+    selectedDataSource: function (dataSource) {
       if (this.currDataSource == null && this.basicDataSource[0] != null) {
-        this.currDataSource = this.basicDataSource[0].name
+        this.currDataSource = this.basicDataSource[0]
+        this.currDataSource.state = true
       } else {
-        this.currDataSource = dataSourceName
+        this.currDataSource.state = false
+        this.currDataSource = dataSource
       }
-      this.$emit('change-data-source', this.currDataSource)
+      this.$emit('change-data-source', this.currDataSource.name)
+      this.$store.commit('Workspace/updateDataSourceName', this.currDataSource.caption)
     }
   }
 }
