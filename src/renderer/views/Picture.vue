@@ -1,45 +1,21 @@
 <template>
   <div>
-    <!-- 视图模式 -->
-    <b-button-toolbar aria-label="Toolbar with button groups and dropdown menu">
-      <b-button-group class="mx-1">
-          <b-button>
-            <font-awesome-icon :icon="['fas', 'list']" size="lg" />
-          </b-button>
-          <b-button>
-            <font-awesome-icon :icon="['fas', 'table']" size="lg" />
-          </b-button>          
-          <b-button>
-            <font-awesome-icon :icon="['fas', 'image']" size="lg" />
-          </b-button>
-      </b-button-group>
-    </b-button-toolbar>
-
-    <!-- 视图详细内容 -->
-    <b-card 
-      img-src="https://placekitten.com/300/300" 
-      img-alt="Card image" 
-      img-left class="mb-3"
-      img-height="120">
-      <b-card-text>
-      Some quick example text to build on the card and make up the bulk of the card's content.
-      Last updated 3 mins ago
-      </b-card-text>
-    </b-card>
-
-    <b-card
-      header="featured"
-      header-tag="header"
-      footer="Last updated 3 mins ago"
-      footer-tag="footer"
-      style="height:240px;width:240px;"
-      class="card-only-image"
-    >
-      <b-img src="https://picsum.photos/300/150/?image=41" fluid alt="Fluid image"></b-img>
-    </b-card>
-
-    another is a table view
-
+    <b-container fluid>
+      <b-row>
+        <div class="picture-item" v-for="(key,index) in 10" :key="index">
+          <div class="picture-item-header">
+            header of picture
+          </div>
+          <div class="picture-item-body">
+            <img src="https://picsum.photos/300/150/?image=41" alt="Fluid image" style="max-width: 100%;height: auto;">
+          </div>
+          <!-- todo: 每次刷新页面时候重新计算 -->
+          <div class="picture-item-footer">
+            Last updated 3 mins ago
+          </div>
+        </div>
+      </b-row>
+    </b-container>
     <p>
       应该能够进行如下功能
     </p>
@@ -61,6 +37,9 @@
     <p>
       6. 使用脚本语言，例如 graphiz 等的代码生成的图片
     </p>
+    <p>
+      7. 和 todo 一样的布局就挺好的， 有标签 能搜索
+    </p>
   </div>
 </template>
 
@@ -71,19 +50,33 @@ export default {
 </script>
 
 <style>
-.card-only-image .card-body{
+.picture-item{
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+
+  height:240px;
+  width:240px;
+  margin:10px;
+}
+.picture-item-header{
+  font-weight: bold;
+}
+.picture-item-header,
+.picture-item-footer{
+  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding-left: 10px;
+}
+.picture-item-body{
   padding: 0 !important;
   display: flex;
-}
-.card-only-image .card-header,
-.card-only-image .card-footer {
-    padding-bottom: 0.25rem;
-    padding-top: 0.25rem;
-    padding-left: 0.25rem;
-    background-color: rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-.card-only-image .card-header{
-  font-weight: bold;
+  flex: 1 1 auto;
+  min-height: 1px;
 }
 </style>
